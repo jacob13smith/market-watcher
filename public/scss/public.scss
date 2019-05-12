@@ -1,0 +1,225 @@
+$color_main: #087fc0;
+$color_secondary: darken(#087fc0, 10%);
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+body {
+	font-family: 'Catamaran', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	color: $color_main;
+}
+
+pre {
+	display: block;
+    padding: 9.5px;
+	font-size: 12px;
+	margin-top: 0;
+    line-height: 1.42857143;
+    color: black;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: white;
+	border: 1px solid #ccc;
+	white-space: pre-wrap;
+}
+
+body {
+	margin: 0px;
+	font-size: 14px;
+	min-height: 100vh;
+	position: absolute;
+	width: 100%;
+	top: 0;
+	background: #fbfbfb;
+}
+
+.hidden { display: none; }
+.error, .negative { color: red; }
+.success, .positive {color: green }
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+select {
+	border: 0px;
+	border-bottom: 0.1em solid #cecece;
+	background: #f3f3f3;
+	padding: 5px;
+	min-width: 175px;
+}
+
+.bittree-box {
+	width: 100%;
+	display: inline-block;
+	max-width: 520px;
+    padding: 25px;
+    background: #f3f3f3;
+	box-shadow: 1px 1px 1px 1px #ececec;
+	&__title {
+		font-weight: bold;
+		font-size: 18px;
+		padding: 15px 0px;
+		color: #087fc0;
+	}
+	&__time {
+		padding: 15px 0px;
+		font-size: 32px;
+	}
+	&__input {
+		padding: 15px 0px;
+	}
+	&__notification {
+		opacity: 0.75;
+		font-size: 12px;
+	}
+	.input {
+		max-width: 250px;
+		width: 100%;
+		display: inline-block;
+		&__label {}
+		&__value {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			input, select {
+				padding: 10px;
+				width: 100%;
+				border: none;
+			}
+		}
+		&__desc {
+			font-size: 12px;
+			margin-bottom: 15px;
+		}
+	}
+	.response__label {
+		margin-top: 10px;
+		font-weight: bold;
+	}
+}
+
+.bittree-btn {
+	padding: 5px 0px;
+    background: $color_main;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+	&:hover {
+		background: darken($color_main, 10%);
+	}
+}
+
+.bittree-label {
+	font-weight: bold;
+	display: block;
+	text-transform: uppercase;
+	color: #888888;
+	font-size: 10px;
+	padding-bottom: 5px;
+}
+
+.bittree-desc {
+	color: #b6b6b6;
+	padding-top: 5px;
+	font-size: 12px
+}
+
+.v-select {
+	margin-right: 15px;
+	min-width: 100px;
+	.dropdown-toggle {
+		border-radius: 0px;
+		background: white;
+	}
+}
+
+.slide-in-right {
+	&-enter {
+		opacity: 0;
+	}
+	&-enter-active {
+		animation: slide-in-right 0.2s ease-out forwards;
+		transition: opacity 0.2s;
+	}
+	&-leave {}
+	&-leave-active {
+		opacity: 0;
+		animation: slide-out-right 0.2s ease-out forwards;
+		transition: opacity 0.4s;	
+	}
+}
+
+.slide-in-left {
+	&-enter {
+		opacity: 0;
+	}
+	&-enter-active {
+		animation: slide-in-left 0.2s ease-out forwards;
+		transition: opacity 0.2s;
+	}
+	&-leave {}
+	&-leave-active {
+		opacity: 0;
+		animation: slide-out-left 0.2s ease-out forwards;
+		transition: opacity 0.2s;	
+	}
+}
+
+.fade {
+	&-enter {
+		opacity: 0;
+	}
+	&-enter-active {
+		transition: opacity 0.4s;
+	}
+	&-leave-active {
+		opacity: 0;
+		transition: opacity 0.4s;
+	}
+}
+
+@keyframes slide-in-right {
+	from {
+		transform: translateX(-100px);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slide-out-right {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(100px);
+	}
+}
+
+@keyframes slide-in-left {
+	from {
+		transform: translateX(100px);
+	}
+	to {
+		transform: translateX(0px);
+	}
+}
+
+@keyframes slide-out-left {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-100px);
+	}
+}
