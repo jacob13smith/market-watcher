@@ -13,9 +13,9 @@ import Default from '../components/Default.vue';
 import axios from 'axios';
 
 Vue.component('v-select', vSelect);
+Vue.component('bittree-switch', Switch);
 Vue.component('default', Default);
 Vue.component('loader', Loader);
-Vue.component('switch', Switch);
 
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -55,3 +55,8 @@ new Vue({
 	store,
 	render: h => h(App)
 });
+
+// Needed for Hot Module Replacement
+if (typeof (module.hot) !== 'undefined') {
+	module.hot.accept() // eslint-disable-line no-undef  
+}

@@ -1,14 +1,25 @@
-const path = require('path');
+const path = require('path');;
+const webpack = require('webpack');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+require('dotenv').config();
 
-module.exports = {
-	mode: 'development',
-	entry: ["babel-polyfill",'./public/js/public.js'],
+// This is client-side webpack.
+let config = {
+	entry: [
+		'babel-polyfill',
+		'./public/js/public.js'
+	],
 	output: {
-		path: path.join(__dirname, '/public/dist'),
-		publicPath: '/assets/',
-		chunkFilename: '[id].bundle.js',
-		filename: 'bundle.js'
+		path: path.join(__dirname, 'dist'),
+		publicPath: '/dist',
+		chunkFilename: '[id].client.js',
+		filename: 'client.js'
 	},
+	mode: process.env.NODE_ENV,
+	target: 'web',
+	devtool: 'source-map',
 	node: {
 		fs: 'empty',
 		net: 'empty',
@@ -30,11 +41,11 @@ module.exports = {
 					plugins: ['@babel/plugin-proposal-object-rest-spread']
 				}
 			}
-		},{
+		}, {
 			test: /\.scss$/,
 			exclude: /node_modules/,
 			loader: 'style-loader!css-loader!sass-loader'
-		},{
+		}, {
 			test: /\.vue$/,
 			exclude: /node_modules/,
 			loader: 'vue-loader',
@@ -56,7 +67,48 @@ module.exports = {
 				}
 				// other vue-loader options go here
 			}
-		}
-		]
+		}, {
+			// Loads the javacript into html template provided.
+			// Entry point is set below in HtmlWebPackPlugin in Plugins 
+			test: /\.html$/,
+			use: [{
+				loader: "html-loader"
+			}]
+		}]
 	}
 };
+
+if (process.env.NODE_ENV === 'production') {
+
+	// Uglify code on production.
+	config.optimization = {
+		minimizer: [
+			new UglifyJSPlugin({
+				cache: true,
+				parallel: true
+			})
+		]
+	};
+	config.plugins = [
+		new HtmlWebPackPlugin({
+			template: './index.html',
+			filename: './index.html'
+		}),
+		new VueLoaderPlugin()
+	];
+} else {
+
+	// Middleware webpack watcher, add hot module plugins.
+	config.entry.push('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000');
+	config.plugins = [
+		new HtmlWebPackPlugin({
+			template: './index.html',
+			filename: './index.html',
+			excludeChunks: ['server'] // This is if we decide to compile server later on in webpack.
+		}),
+		new VueLoaderPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NoEmitOnErrorsPlugin()
+	];
+}
+module.exports = config;

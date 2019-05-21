@@ -9,7 +9,10 @@ export const store = new Vuex.Store({
 		activeTab: 'default',
 		transition: 'fade' // slide-in
 	},
-	getters: {},
+	getters: {
+		activeTab(state) { return state.activeTab; },
+		transition(state) { return state.transition; }
+	},
 	mutations: {},
 	actions: {}
 });
