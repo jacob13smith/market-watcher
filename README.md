@@ -11,7 +11,7 @@ This README would normally document whatever steps are necessary to get your app
 
 * Setup .env file credentials to work with your mongo database. Set the secret to a random hash ( this is for sessions ).
 * `yarn` installs all dependencies.
-* `yarn build` runs webpack and compiles everything in public/js/public.js.
+* `yarn build` runs webpack based on NODE_ENV and compiles everything in dist/.
 * `yarn start` runs node index.js to start the server.
 
 ### Back-end folers/files ###
@@ -19,8 +19,7 @@ This README would normally document whatever steps are necessary to get your app
 * /lib - All back-end classes / modules reside here.
 * /RouteHandler - This class handles your apps back-end routing, it refers to Routes.js for all first level endpoints.
 * /Email - Just a simple class using nodemailer to send out emails.
-* /DB - Class that connects to your mongo database using your credentials in .env.
-* /DBHandler - Static class you can call in any file to make database calls to the connected database.
+* /DBHandler - Static class you can call in any file to make database calls and connected to a database.
 * /DBCollections - Defines each collection in /db.
 
 ### Front-end folders/files ###
