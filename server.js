@@ -1,16 +1,15 @@
 require('dotenv').config();
-const express = require('express');
-const path = require('path');
-const webpack = require('webpack');
+var express = require('express');
+var path = require('path');
+var webpack = require('webpack');
+var app = express();
 
-let RouteHandler = require('./lib/RouteHandler');
-let DBHandler = require('./lib/DBHandler');
+var RouteHandler = require('./lib/RouteHandler');
+var DBHandler = require('./lib/DBHandler');
+var port = process.env.PORT || 80;
 
-let port = process.env.PORT || 80;
-let app = express();
-
-let config = require('./webpack.config');
-let compiler = webpack(config);
+var config = require('./webpack.config');
+var compiler = webpack(config);
 if ( process.env.NODE_ENV !== 'production' ) {
 	console.log('Starting hot reload middleware.');
 	const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -24,11 +23,11 @@ if ( process.env.NODE_ENV !== 'production' ) {
 // Connect database.
 DBHandler.connect();
 
-// Route by reference.
-let router = RouteHandler.getRoutes(app.get('port'), compiler);
-app.use( (req, res, next ) => {
-	router(req, res, next);
-});
+// Config router.
+app.use(RouteHandler.getMiddlewareRoutes(app.get('port')));
+var apiRoutes = RouteHandler.getApiRoutes(); // Api router by reference.
+app.use( apiRoutes );
+app.use( RouteHandler.getOtherRoutes(compiler) );
 
 // Chokidar watcher.
 let serverWatch = null;
@@ -47,7 +46,7 @@ if (process.env.NODE_ENV !== 'production') {
 		// Updates routes and sub-modules.
 		if ( 'lib\\RouteHandler.js' === filename || 'lib\\Routes.js' === filename || folder === 'routes' ) {
 			RouteHandler = require('./lib/RouteHandler');
-			router = RouteHandler.getRoutes(app.get('port'), compiler);
+			apiRoutes = RouteHandler.getApiRoutes();
 		}
 	});
 }
