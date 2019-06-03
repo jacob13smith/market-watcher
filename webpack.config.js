@@ -9,7 +9,7 @@ require('dotenv').config();
 let config = {
 	entry: [
 		'babel-polyfill',
-		'./public/js/public.js'
+		'./src/client/js/public.js'
 	],
 	output: {
 		path: path.join(__dirname, 'dist'),
@@ -42,9 +42,16 @@ let config = {
 				}
 			}
 		}, {
+			test: /\.css$/,
+			use: [ { loader: 'style-loader' }, { loader: 'css-loader' } ]
+		}, {
 			test: /\.scss$/,
 			exclude: /node_modules/,
-			loader: 'style-loader!css-loader!sass-loader'
+			use: [
+                "style-loader", // creates style nodes from JS strings
+                "css-loader", // translates CSS into CommonJS
+                "sass-loader" // compiles Sass to CSS, using Node Sass by default
+            ]
 		}, {
 			test: /\.vue$/,
 			exclude: /node_modules/,
@@ -91,7 +98,7 @@ if (process.env.NODE_ENV === 'production') {
 	};
 	config.plugins = [
 		new HtmlWebPackPlugin({
-			template: './index.html',
+			template: './src/client/html/index.html',
 			filename: './index.html'
 		}),
 		new VueLoaderPlugin()
@@ -102,7 +109,7 @@ if (process.env.NODE_ENV === 'production') {
 	config.entry.push('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000');
 	config.plugins = [
 		new HtmlWebPackPlugin({
-			template: './index.html',
+			template: './src/client/html/index.html',
 			filename: './index.html',
 			excludeChunks: ['server'] // This is if we decide to compile server later on in webpack.
 		}),

@@ -59,11 +59,11 @@ class RouteHandler {
 		var router = express.Router();
 		var DBHandler = require('./DBHandler');
 
-		var dir = fs.readdirSync(path.join(__dirname, '../routes'));
+		var dir = fs.readdirSync(path.join(__dirname, './routes'));
 		var routes = {};
 		dir.forEach(r => {
 			var endpoint = r.replace('.js', '');
-			router.use(`/${endpoint}`, require(`../routes/${r}`));
+			router.use(`/${endpoint}`, require(`./routes/${r}`));
 		});
 		
 		router.use((req, res, next) => {
@@ -88,9 +88,9 @@ class RouteHandler {
 
 			// No watcher for production.
 			if ( process.env.NODE_ENV === 'production' ) {
-				res.sendFile(path.join(__dirname, '../dist/index.html'));
+				res.sendFile(path.join(__dirname, '../../dist/index.html'));
 			} else {
-				compiler.outputFileSystem.readFile(path.join(__dirname, '../dist/index.html'), (err, result) => {
+				compiler.outputFileSystem.readFile(path.join(__dirname, '../../dist/index.html'), (err, result) => {
 					if (err) {
 						return next(err);
 					}

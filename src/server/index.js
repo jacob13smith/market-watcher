@@ -4,11 +4,11 @@ var path = require('path');
 var webpack = require('webpack');
 var app = express();
 
-var RouteHandler = require('./lib/RouteHandler');
-var DBHandler = require('./lib/DBHandler');
+var RouteHandler = require('./RouteHandler');
+var DBHandler = require('./DBHandler');
 var port = process.env.PORT || 80;
 
-var config = require('./webpack.config');
+var config = require('../../webpack.config');
 var compiler = webpack(config);
 if ( process.env.NODE_ENV !== 'production' ) {
 	console.log('Starting hot reload middleware.');
@@ -37,15 +37,15 @@ if (process.env.NODE_ENV !== 'production') {
 	
 	// Rule of thumb, use require() when wanting to hot-reload while debuging/testing.
 	console.log( 'Chokidar Watcher Running.' );
-	serverWatch = chokidar.watch(['./routes', './lib', './db'], { ignoreInitial: true });
+	serverWatch = chokidar.watch(['./routes', './RouteHandler', './db'], { ignoreInitial: true });
 	serverWatch.on('all', (event, filename) => {
 		let folder = filename.split('\\')[0];
 		invalidate(path.resolve(filename));
 		console.log(`Removed ${filename} from cache.`);
 
 		// Updates routes and sub-modules.
-		if ( 'lib\\RouteHandler.js' === filename || 'lib\\Routes.js' === filename || folder === 'routes' ) {
-			RouteHandler = require('./lib/RouteHandler');
+		if ( '\\RouteHandler.js' === filename || '\\Routes.js' === filename || folder === 'routes' ) {
+			RouteHandler = require('./RouteHandler');
 			apiRoutes = RouteHandler.getApiRoutes();
 		}
 	});

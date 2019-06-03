@@ -5,7 +5,7 @@
 	"main": "server.js",
 	"scripts": {
 		"build": "rm -rf dist && webpack --config webpack.config.js",
-		"start": "node ./server.js",
+		"start": "node ./src/server/index.js",
 		"lint": "eslint **/*.js",
 		"todos": "git grep -EI \"TODO|FIXME\""
 	},

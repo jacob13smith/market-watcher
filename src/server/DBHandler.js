@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const fs = require('fs');
 const path = require('path');
 
-var dir = fs.readdirSync(path.join(__dirname, '../db'));
+var dir = fs.readdirSync(path.join(__dirname, './db'));
 var Collections = {};
 dir.forEach(c => {
-	Collections[c.replace('.model.js', '')] = require(`../db/${c}`);
+	Collections[c.replace('.model.js', '')] = require(`./db/${c}`);
 });
 
 /**
