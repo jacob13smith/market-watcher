@@ -16,6 +16,7 @@ router.get('/', async( req, res ) => {
         var promises = [];
         for (i = 0; i < symbols.length; i++){
             let temp = symbols[i].Symbol;
+            let name = symbols[i].Name;
             promises.push(new Promise(function(resolve, reject) {
                 return axios.all([getStats(temp), getQuote(temp)])
                 .then(axios.spread(function (statsResponse, quoteResponse){
@@ -27,17 +28,18 @@ router.get('/', async( req, res ) => {
                     }
                     let root = HTMLParser.parse(statsResponse.data)
                     let eps = find(root, "Diluted EPS");
-                    let bvps = find(root, "Book Value Per Share");
+                    let bvps = find(root, "Book Value Per Share").replace(",","");
                     let eval = eps * bvps;
                     if (eps == "N/A" || bvps == "N/A"){
                         eval = "Unknown";
                     } else if (eval < 0){
                         eval = "Negative"
                     } else {
-                        eval = Math.sqrt(22.5 * eps * bvps);
+                        eval = Math.sqrt(22.5 * eps * bvps).toFixed(2);
                     }
                     resolve({
                         symbol: temp,
+                        name: name,
                         quote: quote,
                         graham: eval
                     });
@@ -63,7 +65,7 @@ function find(root, field){
 function getStats(symbol){
     return axios({
         method: 'get',
-        url:  `https://ca.finance.yahoo.com/quote/${symbol}.TO/key-statistics?p=${symbol}.TO`
+        url:  `https://ca.finance.yahoo.com/quote/${symbol}/key-statistics?p=${symbol}`
     });
 }
 
@@ -71,7 +73,7 @@ function getQuote(symbol){
     symbol = symbol.replace("-","");
     return axios({
         method: 'get',
-        url: `https://www.reuters.com/finance/stocks/overview/${symbol}.TO`
+        url: `https://www.reuters.com/finance/stocks/overview/${symbol}`
     })
 }
 

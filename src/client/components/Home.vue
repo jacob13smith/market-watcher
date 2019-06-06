@@ -2,7 +2,7 @@
 	<div>
 		<div class="home">
 			<div class="home__inner">
-				<div class="home__inner__title">Company Name Here</div>
+				<div class="home__inner__title">Jacob's Security Tracker</div>
 				<div class="home__inner__content">
 					<keep-alive>
 						<component :is="$store.state.activeTab"></component>

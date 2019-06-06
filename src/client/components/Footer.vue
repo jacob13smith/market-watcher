@@ -1,6 +1,6 @@
 <template>
 	<div class="footer">
-		<div class="footer__content">Project Resource Management v1.0.0 · Copyright © 2017 - 2019 Bittree Consulting Ltd · All Rights Reserved</div>
+		<div class="footer__content">Graham Number Calculator</div>
 	</div>
 </template>
 <style lang="scss">

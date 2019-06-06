@@ -1,59 +1,93 @@
 Symbol,Name
-AAV,Advantage Oil & Gas Ltd.
-ATD-B,Alimentation Couche-Tard Inc.
-BMO,Bank of Montreal
-BNS,Bank of Nova Scotia
-ABX,Barrick Gold Corporation
-BHC,Bausch Health Companies Inc.
-BCE,BCE Inc.
-BB,BlackBerry Limited
-BBD-B,Bombardier Inc.
-BAM-A,Brookfield Asset Management Inc.
-CCO,Cameco Corporation
-CM,Canadian Imperial Bank of Commerce
-CNR,Canadian National Railway Company
-CNQ,Canadian Natural Resources Limited
-CP,Canadian Pacific Railway Limited
-CTC-A,"Canadian Tire Corporation, Limited"
-CCL-B,CCL Industries Inc.
-CVE,Cenovus Energy Inc.
-GIB-A,CGI Group Inc.
-CSU,Constellation Software Inc.
-CPG,Crescent Point Energy Corp.
-DOL,Dollarama Inc.
-EMA,Emera Incorporated
-ENB,Enbridge Inc.
-ECA,Encana Corporation
-FM,First Quantum Minerals Ltd.
-FTS,Fortis Inc.
-FNV,Franco-Nevada Corporation
-WN,George Weston Limited
-GIL,Gildan Activewear Inc.
-HSE,Husky Energy Inc.
-IMO,Imperial Oil Limited
-IPL,Inter Pipeline Ltd.
-K,Kinross Gold Corporation
-L,Loblaw Companies Limited
-MG,Magna International Inc.
-MFC,Manulife Financial Corporation
-MRU,Metro Inc.
-NA,National Bank of Canada
-NTR,Nutrien Inc.
-OTEX,Open Text Corporation
-PPL,Pembina Pipeline Corporation
-POW,Power Corporation of Canada
-QSR,Restaurant Brands International Inc.
-RCI-B,Rogers Communications Inc.
-RY,Royal Bank of Canada
-SAP,Saputo Inc.
-SJR-B,Shaw Communications Inc.
-SNC,SNC-Lavalin Group Inc.
+AAV.TO,Advantage Oil & Gas Ltd.
+ATD-B.TO,Alimentation Couche-Tard Inc.
+BMO.TO,Bank of Montreal
+BNS.TO,Bank of Nova Scotia
+ABX.TO,Barrick Gold Corporation
+BHC.TO,Bausch Health Companies Inc.
+BCE.TO,BCE Inc.
+BB.TO,BlackBerry Limited
+BBD-B.TO,Bombardier Inc.
+BAM-A.TO,Brookfield Asset Management Inc.
+CCO.TO,Cameco Corporation
+CM.TO,Canadian Imperial Bank of Commerce
+CNR.TO,Canadian National Railway Company
+CNQ.TO,Canadian Natural Resources Limited
+CP.TO,Canadian Pacific Railway Limited
+CTC-A.TO,"Canadian Tire Corporation, Limited"
+CCL-B.TO,CCL Industries Inc.
+CVE.TO,Cenovus Energy Inc.
+GIB-A.TO,CGI Group Inc.
+CSU.TO,Constellation Software Inc.
+CPG.TO,Crescent Point Energy Corp.
+DOL.TO,Dollarama Inc.
+EMA.TO,Emera Incorporated
+ENB.TO,Enbridge Inc.
+ECA.TO,Encana Corporation
+FM.TO,First Quantum Minerals Ltd.
+FTS.TO,Fortis Inc.
+FNV.TO,Franco-Nevada Corporation
+WN.TO,George Weston Limited
+GIL.TO,Gildan Activewear Inc.
+HSE.TO,Husky Energy Inc.
+IMO.TO,Imperial Oil Limited
+IPL.TO,Inter Pipeline Ltd.
+K.TO,Kinross Gold Corporation
+L.TO,Loblaw Companies Limited
+MG.TO,Magna International Inc.
+MFC.TO,Manulife Financial Corporation
+MRU.TO,Metro Inc.
+NA.TO,National Bank of Canada
+NTR.TO,Nutrien Inc.
+OTEX.TO,Open Text Corporation
+PPL.TO,Pembina Pipeline Corporation
+POW.TO,Power Corporation of Canada
+QSR.TO,Restaurant Brands International Inc.
+RCI-B.TO,Rogers Communications Inc.
+RY.TO,Royal Bank of Canada
+SAP.TO,Saputo Inc.
+SJR-B.TO,Shaw Communications Inc.
+SNC.TO,SNC-Lavalin Group Inc.
 SLF,Sun Life Financial Inc.
-SU,Suncor Energy Inc.
-TECK-B,Teck Resources Limited
-T,Telus Corporation
-TRI,Thomson Reuters Corporation
-TD,Toronto-Dominion Bank
-TRP,TC Energy
-WCN,Waste Connections US Inc.
-WPM,Wheaton Precious Metals Corporation
+SU.TO,Suncor Energy Inc.
+TECK-B.TO,Teck Resources Limited
+T.TO,Telus Corporation
+TRI.TO,Thomson Reuters Corporation
+TD.TO,Toronto-Dominion Bank
+TRP.TO,TC Energy
+WCN.TO,Waste Connections US Inc.
+WPM.TO,Wheaton Precious Metals Corporation,
+MMM,3M
+AXP,American Express,
+AAPL,Apple
+BA,Boeing
+CAT,Caterpillar
+CVX,Chevron
+CSCO,Cisco
+KO,Coca-Cola
+DIS,Disney
+DOW,Dow Chemical
+XOM,Exxon Mobil
+GS,Goldman Sachs
+HD,Home Depot
+IBM,IBM
+INTC,Intel
+JNJ,Johnson & Johnson
+JPM,JPMorgan Chase
+MCD,McDonald's
+MRK,Merck
+MSFT,Microsoft
+NKE,Nike
+PFE,Pfizer
+PG,Procter & Gamble
+TRV,Travelers Companies Inc
+UTX,United Technologies
+UNH,United Health
+VZ,Verizon
+V,Visa
+WMT,Wal-Mart
+WBA,Walgreen
+AMZN,Amazon.Com
+FB,Facebook Class A
+BAC,Bank of America
+MA,Mastercard

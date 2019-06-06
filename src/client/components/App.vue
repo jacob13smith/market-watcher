@@ -1,9 +1,11 @@
 <template>
-    <div>
-		<transition :name="transition" mode="out-in">
-			<router-view></router-view>
-		</transition>
-    </div>
+	<v-app>
+			<div>
+			<transition :name="transition" mode="out-in">
+				<router-view></router-view>
+			</transition>
+			</div>
+	</v-app>
 </template>
 <script>
 import { mapGetters } from 'vuex';
