@@ -8,4 +8,4 @@ For every stock symbol I have saved on my server in a CSV, i grab their yahoo fi
 
 ## Example
 
-![Example](https://github.com/jacob13smith/market-watcher/blob/master/example.jpg)
+![Example](https://github.com/jacob13smith/market-watcher/blob/master/example.JPG)
