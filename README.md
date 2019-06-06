@@ -1,31 +1,11 @@
-# README #
+# README
 
-This README would normally document whatever steps are necessary to get your application up and running.
+I tried searching for a free public API to create a personal market security analysis tool based of the book "The Intelligent Investor" by Benjamin Graham.  (If you are into investing and need somewhere to start I highly suggest that book).  I couldn't find any API's that matched my needs so I decided to crawl the web for the info I needed.  Using Yahoo Finance pages and Reuters security summaries, I was able to get the live, accurate fields I needed to analyse Canadian securities without an API.
 
-### What is this repository for? ###
+## Logic
 
-* This is a reusable repository containing code for generic resource management operations.
-* Version 1.0.0
+For every stock symbol I have saved on my server in a CSV, i grab their yahoo finance page and convert it into a simple DOM tree, which I search through to find the two numbers I need: "Diluted EPS" and "Book Value per Share".  I multipy them together and multiply that by 22.5 (a magic number with other logic behind it), then square root the result to get the securitiy's [Ben Graham Number](https://www.investopedia.com/terms/g/graham-number.asp). (There's some stuff in there to prevent squaring negatives as well).  Then I grab the security's current selling price from the Reuter's website (because with Yahoo, the price isn't sent with the HTML) and create a discount factor by dividing the price by the Graham number and subtracting it from 1. That gives me a list on the front end to make a table sorted by discount factor of what I believe to be undervalued companies on the market.
 
-### How to setup ###
+## Example
 
-* Setup .env file credentials to work with your mongo database. Set the secret to a random hash ( this is for sessions ).
-* `yarn` installs all dependencies.
-* `yarn build` runs webpack based on NODE_ENV and compiles everything in dist/.
-* `yarn start` runs node index.js to start the server.
-
-### Back-end folers/files ###
-* /routes - This folder is where you write your endpoints. Look at test for example case.
-* /lib - All back-end classes / modules reside here.
-* /RouteHandler - This class handles your apps back-end routing, it refers to Routes.js for all first level endpoints.
-* /Email - Just a simple class using nodemailer to send out emails.
-* /DBHandler - Static class you can call in any file to make database calls and connected to a database.
-* /DBCollections - Defines each collection in /db.
-
-### Front-end folders/files ###
-* /public - This folder is where front-end related code resides.
-* /public/components - This folder is where your Vue structure lives. Everything is based off App.vue.
-* /public/js/routes - Vue-Routing.
-* /public/js/store - Vuex.
-* /public/js/modules/ - If your front-end scales too large for your store.js file you can use this folder to chunk sections of your code.
-* /public/scss/ - public is relative to all apps using this framework. Private is overwritten on a specific app using this framework.
+![Example](https://github.com/jacob13smith/market-watcher/blob/master/example.JPG)
