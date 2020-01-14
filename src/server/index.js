@@ -21,7 +21,7 @@ if ( process.env.NODE_ENV !== 'production' ) {
 }
 
 // Connect database.
-DBHandler.connect();
+//DBHandler.connect();
 
 // Config router.
 app.use(RouteHandler.getMiddlewareRoutes(app.get('port')));

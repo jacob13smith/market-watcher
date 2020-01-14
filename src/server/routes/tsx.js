@@ -17,16 +17,14 @@ router.get('/', async( req, res ) => {
         for (i = 0; i < symbols.length; i++){
             let temp = symbols[i].Symbol;
             let name = symbols[i].Name;
-            promises.push(new Promise(function(resolve, reject) {
-                return axios.all([getStats(temp), getQuote(temp)])
-                .then(axios.spread(function (statsResponse, quoteResponse){
-                    let page = HTMLParser.parse(quoteResponse.data);
-                    let quote = "Not Found";
-                    try {
-                        quote = page.querySelector('span.nasdaqChangeHeader').parentNode.childNodes[6].childNodes[0].rawText.trim();
-                    } catch (err){
-                    }
+            promises.push(
+                new Promise(function(resolve, reject) {
+                return axios.all([getStats(temp)])
+                .then(axios.spread(function (statsResponse){
                     let root = HTMLParser.parse(statsResponse.data)
+                    const regex = /currentPrice":{"raw":[0-9]+\.?[0-9]*,/g;
+                    const priceRegex = /[0-9]+.?[0-9]*/g;
+                    let quote = statsResponse.data.match(regex)[0].match(priceRegex)[0];
                     let eps = find(root, "Diluted EPS");
                     let bvps = find(root, "Book Value Per Share").replace(",","");
                     let eval = eps * bvps;
@@ -47,7 +45,6 @@ router.get('/', async( req, res ) => {
             }));
         }
         Promise.all(promises).then(function (responses){
-            fs.writeFile("./output.txt", JSON.stringify(responses));
             res.json(responses);
         });
     });
@@ -67,14 +64,6 @@ function getStats(symbol){
         method: 'get',
         url:  `https://ca.finance.yahoo.com/quote/${symbol}/key-statistics?p=${symbol}`
     });
-}
-
-function getQuote(symbol){
-    symbol = symbol.replace("-","");
-    return axios({
-        method: 'get',
-        url: `https://www.reuters.com/finance/stocks/overview/${symbol}`
-    })
 }
 
 module.exports = router;
